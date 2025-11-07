@@ -14,27 +14,44 @@ operators = '+-^/*'
 def infixToPostfix(expression):
     st_k = Stack()
     output = []
+    operators = '+-/*^'
 
-    for token in expression:   # iterate character by character
-        if token.isalnum():    # operand (single letter/number)
-            output.append(token)
-        elif token == '(':
-            st_k.push(token)
-        elif token == ')':
+    i = 0
+    while i < len(expression):
+        ch = expression[i]
+
+        # If digit, build the full number
+        if ch.isdigit():
+            num = ch
+            while i + 1 < len(expression) and expression[i+1].isdigit():
+                i += 1
+                num += expression[i]
+            output.append(num)
+
+        elif ch.isalpha():  # variable like a, b, c
+            output.append(ch)
+
+        elif ch == '(':
+            st_k.push(ch)
+
+        elif ch == ')':
             while not st_k.isEmpty() and st_k.peek() != '(':
                 output.append(st_k.pop())
-            st_k.pop()  # remove '('
-        elif token in operators:  # operator
-            while (not st_k.isEmpty() and 
-                   precedence(st_k.peek()) >= precedence(token)):
-                output.append(st_k.pop())
-            st_k.push(token)
+            st_k.pop()
 
-    # Pop remaining operators
+        elif ch in operators:
+            while (not st_k.isEmpty() and
+                   precedence(st_k.peek()) >= precedence(ch)):
+                output.append(st_k.pop())
+            st_k.push(ch)
+
+        i += 1
+
     while not st_k.isEmpty():
         output.append(st_k.pop())
 
-    return "".join(output)   # no spaces in final postfix
+    return " ".join(output)   # space-separated tokens
+ 
 
 expr1 = "a+b/c+d"
 expr2 = "( A + B ) * C"
