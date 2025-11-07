@@ -5,6 +5,8 @@ def EvaPostFixExpression(expression):
     st = Stack()
     operators = '+-/*^'
     tokens = expression.split()
+    print("after using split!")
+    print(tokens)
 
     for token in tokens:
         if token.isdigit():
@@ -29,6 +31,8 @@ def EvaPostFixExpression(expression):
 
 
 expr1 = "10+100/10+20"
+expr2 = "( A + B ) * C"
 postfix1 = infixToPostfix(expr1)
 print("Postfix:", postfix1)
 print("Result:", EvaPostFixExpression(postfix1))
+

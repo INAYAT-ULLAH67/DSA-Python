@@ -20,12 +20,13 @@ def infixToPostfix(expression):
     while i < len(expression):
         ch = expression[i]
 
-        # If digit, build the full number
+        # build the full number and add to the output
         if ch.isdigit():
             num = ch
             while i + 1 < len(expression) and expression[i+1].isdigit():
                 i += 1
                 num += expression[i]
+            print(num)  
             output.append(num)
 
         elif ch.isalpha():  # variable like a, b, c
@@ -49,6 +50,7 @@ def infixToPostfix(expression):
 
     while not st_k.isEmpty():
         output.append(st_k.pop())
+    print(output)
 
     return " ".join(output)   # space-separated tokens
  
