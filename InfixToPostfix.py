@@ -26,7 +26,7 @@ def infixToPostfix(expression):
             while i + 1 < len(expression) and expression[i+1].isdigit():
                 i += 1
                 num += expression[i]
-            print(num)  
+                
             output.append(num)
 
         elif ch.isalpha():  # variable like a, b, c
@@ -55,7 +55,7 @@ def infixToPostfix(expression):
     return " ".join(output)   # space-separated tokens
  
 
-expr1 = "a+b/c+d"
+expr1 = "a+b/(c+d)"
 expr2 = "( A + B ) * C"
 expr3 = "A + B * C ^ D - E"
 
