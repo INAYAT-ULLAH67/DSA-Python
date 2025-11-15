@@ -1,41 +1,55 @@
-def quick_sort_stack(arr):
-    # stack will store tuples of (low, high) indices
-    stack = [(0, len(arr) - 1)]
-
+def quicksort(arr):
+    # Create an empty stack
+    stack = []
+    
+    # Push the initial sequence (start and end indices)
+    stack.append((0, len(arr) - 1))
+    
     while stack:
+        # Step 1: Pop sequence from stack
         low, high = stack.pop()
-        print("low is", low, "high is", high)
 
-        if low < high:
-            # --- Partition logic inline ---
-            pivot = arr[low]   # choose first element as pivot
-            i = low + 1
-            j = high
+        if low >= high:
+            continue
 
-            while True:
-                while i <= j and arr[i] <= pivot:
-                    i += 1
-                while i <= j and arr[j] >= pivot:
-                    j -= 1
-                if i <= j:
-                    arr[i], arr[j] = arr[j], arr[i]  # swap
-                else:
-                    break
+        # Step 2: Select first element as pivot
+        pivot = arr[low]
+        loc = low
+        left = low
+        right = high
 
-            # place pivot in correct position
-            arr[low], arr[j] = arr[j], arr[low]
-            pivot_index = j
-            # --- End partition logic ---
+        while left < right:
+            # Step 3: Scan from right to left for smaller than pivot
+            #this will stop when we encounter smaller value than pivot!
+            while left < right and arr[right] >= pivot:
+                right -= 1
+            if left < right:
+                arr[loc] = arr[right]
+                loc = right
 
-            # Push subarrays onto stack
-            stack.append((low, pivot_index - 1))
-            stack.append((pivot_index + 1, high))
+            # Step 4: Scan from left to right for larger than pivot
+            #this loop will stop when it encounter larger value 
+            while left < right and arr[left] <= pivot:
+                left += 1
+            if left < right:
+                arr[loc] = arr[left]
+                loc = left
+
+        # Place pivot at correct location
+        arr[loc] = pivot
+
+        # Step 6: Push left and right sequences onto stack
+        # L = left part, G = right part
+        stack.append((low, loc - 1))
+        stack.append((loc + 1, high))
 
     return arr
 
 
+
+
 # Example usage
-arr = [10, 7, 8, 9, 1, 5]
+arr = [50, 30, 70, 20, 90, 40]
 print("Original array:", arr)
-sorted_arr = quick_sort_stack(arr)
+sorted_arr = quicksort(arr)
 print("Sorted array:", sorted_arr)

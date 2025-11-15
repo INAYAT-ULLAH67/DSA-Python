@@ -6,6 +6,7 @@ def fibonacci(n):
 
 x=fibonacci(5)
 print(x)
+# nth term of fibonacci series
 def goodfibonacci(n):
     assert n>-1
     if n==0: return (1,0)

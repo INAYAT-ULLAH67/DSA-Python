@@ -10,6 +10,7 @@ def EvaPostFixExpression(expression):
 
     for token in tokens:
         if token.isdigit():
+            #we keep operand on the stack for postfix evaluation
             st.push(int(token))
         elif token in operators:
             b = st.pop()

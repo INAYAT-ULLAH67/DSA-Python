@@ -30,24 +30,28 @@ def infixToPostfix(expression):
             output.append(num)
 
         elif ch.isalpha():  # variable like a, b, c
+            #if operand display it mean add it to output
             output.append(ch)
 
         elif ch == '(':
             st_k.push(ch)
 
         elif ch == ')':
+
             while not st_k.isEmpty() and st_k.peek() != '(':
                 output.append(st_k.pop())
             st_k.pop()
 
         elif ch in operators:
+            # first we compare with tos several times , let  "Y"
             while (not st_k.isEmpty() and
                    precedence(st_k.peek()) >= precedence(ch)):
                 output.append(st_k.pop())
+               
             st_k.push(ch)
 
         i += 1
-
+#step 3 it will iterat maximum 4 times because only three operator  will be  left!
     while not st_k.isEmpty():
         output.append(st_k.pop())
     print(output)

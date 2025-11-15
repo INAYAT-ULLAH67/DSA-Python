@@ -45,3 +45,4 @@ stk.display()
 print("Top element (peek):", stk.peek())
 print("Popped element:", stk.pop())
 stk.display()
+
