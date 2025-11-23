@@ -55,8 +55,43 @@ class Btree:
             return x
         else:
             print("Right child has its own children, cannot delete directly")
-      print("this node has children")
+    def height(self):
+        if self.left is None and self.right is None:
+            return 1   # leaf node has height 1
+        rh=0
+        lh=0
+        if self.right is not None:
+            rh=self.right.height()
 
+        if self.left is not None:
+            lh=self.left.height()
+        if rh>lh:
+            return rh+1
+        return lh+1
+
+    def nodeCount(self):
+        if self.left is None and self.right is None:
+            return 1   # leaf node counts as 1
+        lnc=0
+        rnc=0
+        if self.left is not None:
+            lnc=self.left.nodeCount()
+        if self.right is not None:
+            rnc=self.right.nodeCount()
+        return lnc + rnc + 1
+    
+    def leafCout(self):
+        if self.left is None and self.right is None:
+            return 1   # leaf node counts as 1
+        lfc=0
+        rfc=0
+        if self.left is not None:
+            lfc=self.left.leafCout()
+        if self.right is not None:
+            rfc=self.right.leafCout()
+        return lfc + rfc
+
+        
 
 bt = Btree()
 bt.addRoot(10)
