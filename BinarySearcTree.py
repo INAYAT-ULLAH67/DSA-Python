@@ -40,31 +40,37 @@ class BinarySearchTree:
         while current.left is not None:
             current = current.left
         return current
-    def deletionOfNode(self,Node,value):
-        if not Node:
+    def deletionOfNode(self,node,value):
+        if not node:
             return None
         #if value is less than node's value, go left
-        if value < Node.value:
-            Node.left = self.deletionOfNode(Node.left,value)
+        if value < node.value:
+            node.left = self.deletionOfNode(node.left,value)
         #if value is greater than node's value, go right
-        elif value > Node.value:
-            Node.right = self.deletionOfNode(Node.right,value)
+        elif value > node.value:
+            node.right = self.deletionOfNode(node.right,value)
         else:
-            #node with only one child or no child
-            if Node.left is None:
-                temp = Node.right
-                Node = None
-                return temp
-            elif Node.right is None:
-                temp = Node.left
-                Node = None
-                return temp
-            #node with two children: get the inorder successor (smallest in the right subtree)
-            temp = self.minValueNode(Node.right)
-            #copy the inorder successor's content to this node
-            Node.value = temp.value
-            #delete the inorder successor
-            Node.right = self.deletionOfNode(Node.right,temp.value)
+            #with no children 
+            if node.left is None and node.right is None:
+                return None
+            #with one child
+            if node.left is None:
+                return node.right
+            elif node.right is None:
+                return node.left
+            #with two children
+            temp = self.minValueNode(node.right)
+            node.value = temp.value
+            node.right = self.deletionOfNode(node.right,temp.value)
+        return node     
+    
+
+
+    
+
+
+             
+
         
         
         
