@@ -69,6 +69,8 @@ class TreeNode:
         if node is None:
             return d == level
         if node.left is None and node.right is None:
+            # Every leaf must be at the same level.
+            #here level d-heght starts from 0
             return d == level + 1
         if node.left is None or node.right is None:
             return False
@@ -106,7 +108,23 @@ class TreeNode:
         return False
 
         
+    def search_node(self, target):
+        """Return the TreeNode whose .value == target, or None if not found."""
+        if self.value == target:
+            return self
+        # search left
+        if self.left is not None:
+            left_res = self.left.search_node(target)
+            if left_res is not None:
+                return left_res
+        # search right
+        if self.right is not None:
+            return self.right.search_node(target)
+        return None
 
+
+
+ 
     def __str__(self):
         return str(self.value)
 
@@ -202,3 +220,5 @@ h=e.addLeftChild('H')
 i=e.addRightChild('I')
 print(y.root.almostCompleteBtrre()) #True
 print("is perfect:", y.root.isperfect()) #False
+print("search for I ")
+print(r.search_node("I"))
