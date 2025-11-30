@@ -64,20 +64,6 @@ class BinarySearchTree:
             node.right = self.deletionOfNode(node.right,temp.value)
         return node     
     
-
-
-    
-
-
-             
-
-        
-        
-        
-
-
-
-
 A=BinarySearchTree()
 A.root = A.insert(A.root, 50)
 A.insert(A.root, 30)
@@ -99,11 +85,6 @@ if result:
     print(f"Value {result.value} found in the BST.")
 else:
     print("Value not found in the BST.")
-
-
-
-
-
 B = BinarySearchTree()
 B.root = B.insert(B.root, 13)
 B.insert(B.root, 7)
