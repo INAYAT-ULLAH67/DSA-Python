@@ -1,6 +1,6 @@
 
 # from tree import Btree
-from TreeNode import TreeNode
+from tree.BTstructure import TreeNode
 def preorder(node):
     if node is None:
         return
