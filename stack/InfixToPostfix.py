@@ -1,4 +1,4 @@
-from stackLS import Stack
+from stack.Stack import Stack
 
 def precedence(op):
     if op in ('+', '-'):
